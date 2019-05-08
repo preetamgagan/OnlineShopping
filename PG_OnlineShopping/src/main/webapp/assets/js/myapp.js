@@ -1,6 +1,6 @@
 $(function(){
 	//solving the actice menu problem
-	switch(menu){
+	/*switch(menu){
 		
 	case "About Us" :
 		$("#about").addClass("active");
@@ -10,16 +10,17 @@ $(function(){
 		$("#contact").addClass("active");
 		break;
 	
-	case "View Products" :
+	case "All Products" :
 		$("#listProducts").addClass("active");
 		break;
 		
-	case "Home" :
+	default:
+		$("#a_"+menu).addClass("active");
 		$("#home").addClass("active");
 		break;
 	
-	}
+	}*/
 	
 	
 	
-})
+});

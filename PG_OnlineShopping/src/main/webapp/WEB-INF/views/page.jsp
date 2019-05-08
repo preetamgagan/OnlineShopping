@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<spring:url var="css" value="/resources/css/" />
-<spring:url var="js" value="/resources/js/" />
-<spring:url var="images" value="/resources/images/" />
-<spring:url var="vendor" value="/resources/vendor/" />
+<spring:url var="css" value="/resources/css" />
+<spring:url var="js" value="/resources/js" />
+<spring:url var="images" value="/resources/images" />
+<spring:url var="vendor" value="/resources/vendor" />
 <c:set var="contextRoot" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
 <link href="${css}/myapp.css" rel="stylesheet">
 
 <!-- Bootstrap theme -->
-<link href="${css}/bootstrap-theme.min.css" rel="stylesheet">
+<%-- <link href="${css}/bootstrap-theme.min.css" rel="stylesheet"> --%>
 
 </head>
 
@@ -56,7 +56,7 @@
 	<%@include file="contact.jsp" %>
 	</c:if>
 	<!-- Loading the listProducts content -->
-	<c:if test="${userClickListProducts==true}">
+	<c:if test="${userClickAllProducts==true or userClickCategoryProducts == true}">
 	<%@include file="listProducts.jsp" %>
 	</c:if>
 </div>
