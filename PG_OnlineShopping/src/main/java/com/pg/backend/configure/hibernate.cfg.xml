@@ -14,5 +14,6 @@
 		<property name="hibernate.current_session_context_class">thread</property>
 		<property name="hibernate.format_sql">true</property>
 		<mapping class = "com.pg.backend.entity.Category"/>
+		<mapping class = "com.pg.backend.entity.Product"/>
 	</session-factory>
 </hibernate-configuration>	

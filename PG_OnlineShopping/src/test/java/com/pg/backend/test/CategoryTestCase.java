@@ -38,11 +38,11 @@ public class CategoryTestCase {
 		assertEquals("Successfully added the category inside the table", true,categoryDao.addCategory(category));
 	}
 	*/
-	/*@Test
+	@Test
 	public void testGetCategoty() {
 		category = categoryDao.get(3);
 		assertEquals("Successfully fetched a single category", "Camera", category.getName());
-	}*/
+	}
 	
 	
 	/*@Test
@@ -66,7 +66,7 @@ public class CategoryTestCase {
 		assertEquals("Successfully fetched the list of category", 5, categoryDao.listCategory().size());
 	}*/
 	
-	@Test
+	/*@Test
 	public void CURDCategoryTest() {
 		
 		//Adding new category to the table
@@ -94,7 +94,7 @@ public class CategoryTestCase {
 		assertEquals("Successfully fetched the list of category", 7, categoryDao.listCategory().size());
 		
 	}
-	
+	*/
 	
 	
 	

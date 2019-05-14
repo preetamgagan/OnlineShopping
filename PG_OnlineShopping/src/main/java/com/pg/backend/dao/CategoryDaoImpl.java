@@ -15,7 +15,7 @@ import com.pg.backend.util.HibernateUtils;
 @Repository("categoryDao")
 @Transactional
 public class CategoryDaoImpl implements CategoryDao {
-	Session ses = HibernateUtils.getSession();
+	
 	
 
 	/*
@@ -23,10 +23,22 @@ public class CategoryDaoImpl implements CategoryDao {
 	 */
 	@Override
 	public List<Category> listCategory() {
-		final String selectActiveCategory = "FROM Category WHERE active = :active"; 
-		Query query = ses.createQuery(selectActiveCategory);
-		query.setParameter("active", true);
-		return query.getResultList();
+		Session ses = HibernateUtils.getSession();
+		Transaction tx = ses.beginTransaction();
+		Query query=null;
+		 try {
+			 final String selectActiveCategory = "FROM Category WHERE active = :active"; 
+				query = ses.createQuery(selectActiveCategory,Category.class);
+				query.setParameter("active", true);
+				List<Category> category = query.getResultList();
+				 tx.commit();
+				 return category;
+		 }
+		 catch (Exception e) {
+			 e.printStackTrace();
+			 tx.rollback();
+		}
+		return null;
 	}
 
 	/*
@@ -34,9 +46,17 @@ public class CategoryDaoImpl implements CategoryDao {
 	 */
 	@Override
 	public Category get(int id) {
-		// Session ses = HibernateUtils.getSession();
-		Category category = ses.load(Category.class, id);
-		// HibernateUtils.closeSession(ses);
+		Session ses = HibernateUtils.getSession();
+		Transaction tx = ses.beginTransaction();
+		Category category =null;
+		 try {
+		category = ses.get(Category.class, id);
+		 tx.commit();
+		 }
+		 catch (Exception e) {
+			 e.printStackTrace();
+			 tx.rollback();
+		}
 		return category;
 	}
 
@@ -45,7 +65,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	 */
 	@Override
 	public boolean addCategory(Category category) {
-		// Session ses = HibernateUtils.getSession();
+		Session ses = HibernateUtils.getSession();
 		int idVal = 0;
 		Transaction tx = null;
 		boolean flag = false;
@@ -77,7 +97,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	 */
 	@Override
 	public boolean updateCategory(Category category) {
-		// Session ses = HibernateUtils.getSession();
+		Session ses = HibernateUtils.getSession();
 		Transaction tx = ses.beginTransaction();
 		boolean isUpdated = false;
 		try {
@@ -101,6 +121,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	 */
 	@Override
 	public boolean deleteCategory(Category category) {
+		Session ses = HibernateUtils.getSession();
 		Transaction tx = ses.beginTransaction();
 		category.setActive(false);
 		boolean isUpdated = false;
